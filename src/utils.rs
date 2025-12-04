@@ -25,6 +25,6 @@ pub fn day02_input(filename: &str) -> Vec<String> {
     read_to_string(filename)
         .expect("Couldn't read file")
         .split(",")
-        .map(|s| s.to_string())
+        .map(|s| s.trim().to_string())
         .collect()
 }
