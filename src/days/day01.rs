@@ -1,7 +1,7 @@
 use aoc2025::utils::day01_input;
 
 pub fn solve() {
-    let instructions = day01_input("inputs/day01.txt");
+    let instructions = day01_input("src/days/inputs/day01/day01.txt");
     let mut dial: i32 = 50;
     let mut zeros: i32 = 0;
     for (dir, mut num) in instructions {
