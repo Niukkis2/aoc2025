@@ -30,9 +30,8 @@ pub fn solve_d2p2() {
             let s = i.to_string();
             let len_num: i32 = s.len() as i32; //len_num: correct
             let factors: Vec<i32> = find_factors(len_num);
-            if every_char_same(i) {
+            if every_char_same(i) && len_num > 1 {
                 invalids += i;
-                println!("every char same: {i}");
                 continue;
             }
             for factor in factors {
@@ -42,28 +41,13 @@ pub fn solve_d2p2() {
                     .map(|chunk| std::str::from_utf8(chunk).unwrap())
                     .collect();
                 if compare_strs(chunks) {
-                    println!("invalid id: {i}");
                     invalids += i;
+                    break;
                 }
             }
         }
     }
     println!("Day2 P2: {invalids}");
-}
-
-fn check_all_invalids(num: i64, factors: &[i32]) -> bool {
-    for even_slices_amount in factors {
-        let num_str = num.to_string();
-        let chunks: Vec<&str> = num_str
-            .as_bytes()
-            .chunks(*even_slices_amount as usize)
-            .map(|chunk| std::str::from_utf8(chunk).unwrap())
-            .collect();
-        if !compare_strs(chunks) {
-            return false;
-        }
-    }
-    true
 }
 
 fn compare_strs(chunks: Vec<&str>) -> bool {
