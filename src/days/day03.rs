@@ -2,7 +2,6 @@ use aoc2025::utils::file_to_vec;
 
 pub fn solve() {
     let input: Vec<String> = file_to_vec("src/days/inputs/day03/day03.txt");
-    println!("{:?}", input);
     let mut total: u32 = 0;
     for batteries in input {
         let as_chars: Vec<char> = batteries.chars().collect();
@@ -35,14 +34,10 @@ pub fn solve() {
                 }
             }
         }
-        let mut right_str = max_first.to_string();
-        let mut left_str = max_second.to_string();
         if max_first_idx < max_second_idx {
-            right_str.push_str(&left_str);
-            total += right_str.parse::<u32>().unwrap();
+            total += max_first * 10 + max_second;
         } else {
-            left_str.push_str(&right_str);
-            total += left_str.parse::<u32>().unwrap();
+            total += max_second * 10 + max_first;
         }
     }
     println!("Day03 P1: {total}");
