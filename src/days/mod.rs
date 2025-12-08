@@ -6,5 +6,6 @@ pub fn solve_all() {
     // day01::solve();
     // day02::solve_d2p1();
     // day02::solve_d2p2();
-    day03::solve();
+    // day03::solve_d3p1();
+    day03::solve_d3p2();
 }

@@ -1,6 +1,6 @@
 use aoc2025::utils::file_to_vec;
 
-pub fn solve() {
+pub fn solve_d3p1() {
     let input: Vec<String> = file_to_vec("src/days/inputs/day03/day03.txt");
     let mut total: u32 = 0;
     for batteries in input {
@@ -41,4 +41,64 @@ pub fn solve() {
         }
     }
     println!("Day03 P1: {total}");
+}
+
+pub fn solve_d3p2() {
+    let input: Vec<String> = file_to_vec("src/days/inputs/day03/day03.txt");
+    let mut total: u64 = 0;
+    for batteries in input {
+        let as_chars: Vec<char> = batteries.chars().collect();
+        let as_ints: Vec<u64> = as_chars
+            .into_iter()
+            .map(|c| c.to_digit(10).unwrap() as u64)
+            .collect();
+        let mut remaining_batteries: usize = as_ints.len();
+        let mut free_spaces: usize = 12;
+        let mut stack: Vec<u64> = Vec::new();
+        for (i, num) in as_ints.iter().enumerate() {
+            if stack.is_empty() {
+                stack.push(*num);
+                free_spaces -= 1;
+                remaining_batteries -= 1;
+                continue;
+            } else if *num > stack[stack.len() - 1] {
+                while let Some(&last) = stack.last() {
+                    if last < *num && free_spaces < remaining_batteries {
+                        stack.pop();
+                        free_spaces += 1;
+                    } else {
+                        break;
+                    }
+                }
+                if stack.is_empty() {
+                    stack.push(*num);
+                    remaining_batteries -= 1;
+                    free_spaces -= 1;
+                    continue;
+                }
+            }
+            if free_spaces == remaining_batteries {
+                stack.extend_from_slice(&as_ints[i..as_ints.len()]);
+                break;
+            }
+            if free_spaces == 0 && (*num == stack[stack.len() - 1] || *num < stack[stack.len() - 1])
+            {
+                remaining_batteries -= 1;
+                continue;
+            } else {
+                stack.push(*num);
+                free_spaces -= 1;
+            }
+            remaining_batteries -= 1;
+        }
+        let num_str = stack.iter().map(|n| n.to_string()).collect::<String>();
+        total += match num_str.parse::<u64>() {
+            Ok(n) => n,
+            Err(e) => {
+                println!("{e}");
+                0
+            }
+        };
+    }
+    println!("Day3 P2: {total}")
 }
