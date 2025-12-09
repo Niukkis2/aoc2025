@@ -48,14 +48,14 @@ pub fn solve_d3p2() {
     let mut total: u64 = 0;
     for batteries in input {
         let as_chars: Vec<char> = batteries.chars().collect();
-        let as_ints: Vec<u64> = as_chars
+        let as_numbers: Vec<u64> = as_chars
             .into_iter()
             .map(|c| c.to_digit(10).unwrap() as u64)
             .collect();
-        let mut remaining_batteries: usize = as_ints.len();
+        let mut remaining_batteries: usize = as_numbers.len();
         let mut free_spaces: usize = 12;
         let mut stack: Vec<u64> = Vec::new();
-        for (i, num) in as_ints.iter().enumerate() {
+        for (i, num) in as_numbers.iter().enumerate() {
             if stack.is_empty() {
                 stack.push(*num);
                 free_spaces -= 1;
@@ -78,7 +78,7 @@ pub fn solve_d3p2() {
                 }
             }
             if free_spaces == remaining_batteries {
-                stack.extend_from_slice(&as_ints[i..as_ints.len()]);
+                stack.extend_from_slice(&as_numbers[i..as_numbers.len()]);
                 break;
             }
             if free_spaces == 0 && (*num == stack[stack.len() - 1] || *num < stack[stack.len() - 1])
@@ -92,13 +92,7 @@ pub fn solve_d3p2() {
             remaining_batteries -= 1;
         }
         let num_str = stack.iter().map(|n| n.to_string()).collect::<String>();
-        total += match num_str.parse::<u64>() {
-            Ok(n) => n,
-            Err(e) => {
-                println!("{e}");
-                0
-            }
-        };
+        total += num_str.parse::<u64>().unwrap();
     }
     println!("Day3 P2: {total}")
 }

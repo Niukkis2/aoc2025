@@ -2,7 +2,7 @@ use std::fs::read_to_string;
 
 pub fn file_to_vec(filename: &str) -> Vec<String> {
     read_to_string(filename)
-        .expect("Couldn't read file")
+        .unwrap()
         .lines()
         .map(|s| s.to_string())
         .collect()
@@ -10,21 +10,24 @@ pub fn file_to_vec(filename: &str) -> Vec<String> {
 
 pub fn day01_input(filename: &str) -> Vec<(String, i32)> {
     read_to_string(filename)
-        .expect("Couldn't read file")
+        .unwrap()
         .lines()
-        .map(|s| {
-            (
-                s[0..1].to_string(),
-                s[1..s.len()].parse().expect("Expected i32"),
-            )
-        })
+        .map(|s| (s[0..1].to_string(), s[1..s.len()].parse().unwrap()))
         .collect()
 }
 
 pub fn day02_input(filename: &str) -> Vec<String> {
     read_to_string(filename)
-        .expect("Couldn't read file")
+        .unwrap()
         .split(",")
         .map(|s| s.trim().to_string())
+        .collect()
+}
+
+pub fn day04_input(filename: &str) -> Vec<Vec<char>> {
+    read_to_string(filename)
+        .unwrap()
+        .lines()
+        .map(|s| s.trim().chars().collect())
         .collect()
 }
