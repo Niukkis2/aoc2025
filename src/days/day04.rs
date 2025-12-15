@@ -89,6 +89,7 @@ pub fn solve_d4p2() {
     }
     println!("Day4 p1: {total}");
 }
+
 fn out_of_bounds(i: i32, j: i32, length: usize) -> bool {
     let leni32 = length as i32;
     i < 0 || j < 0 || i >= leni32 || j >= leni32

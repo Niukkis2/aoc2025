@@ -2,6 +2,7 @@ pub mod day01;
 pub mod day02;
 pub mod day03;
 pub mod day04;
+pub mod day05;
 
 pub fn solve_all() {
     // day01::solve();
@@ -10,5 +11,6 @@ pub fn solve_all() {
     // day03::solve_d3p1();
     // day03::solve_d3p2();
     // day04::solve_d4p1();
-    day04::solve_d4p2();
+    // day04::solve_d4p2();
+    day05::solve_d5p1();
 }
