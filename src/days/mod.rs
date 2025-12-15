@@ -12,5 +12,6 @@ pub fn solve_all() {
     // day03::solve_d3p2();
     // day04::solve_d4p1();
     // day04::solve_d4p2();
-    day05::solve_d5p1();
+    // day05::solve_d5p1();
+    day05::solve_d5p2();
 }
