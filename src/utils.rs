@@ -44,3 +44,11 @@ pub fn day05_input(filename: &str) -> (Vec<String>, Vec<String>) {
         .collect_tuple()
         .unwrap()
 }
+
+pub fn day06_input(filename: &str) -> Vec<Vec<String>> {
+    read_to_string(filename)
+        .unwrap()
+        .lines()
+        .map(|line| line.split_whitespace().map(String::from).collect())
+        .collect()
+}
