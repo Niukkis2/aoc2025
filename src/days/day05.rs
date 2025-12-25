@@ -1,5 +1,4 @@
 use aoc2025::utils::day05_input;
-use itertools::Itertools;
 
 pub fn solve_d5p1() {
     let (ranges, values) = day05_input("src/days/inputs/day05/day05.txt");
@@ -20,7 +19,7 @@ pub fn solve_d5p1() {
 }
 
 pub fn solve_d5p2() {
-    let (mut ranges, _values) = day05_input("src/days/inputs/day05/day05.txt");
+    let (ranges, _values) = day05_input("src/days/inputs/day05/day05.txt");
     let mut start_end: Vec<(i64, i64)> = ranges
         .iter()
         .map(|s| {
