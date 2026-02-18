@@ -55,6 +55,7 @@ pub fn solve_d3p2() {
         let mut remaining_batteries: usize = as_numbers.len();
         let mut free_spaces: usize = 12;
         let mut stack: Vec<u64> = Vec::new();
+
         for (i, num) in as_numbers.iter().enumerate() {
             if stack.is_empty() {
                 stack.push(*num);
@@ -70,6 +71,7 @@ pub fn solve_d3p2() {
                         break;
                     }
                 }
+
                 if stack.is_empty() {
                     stack.push(*num);
                     remaining_batteries -= 1;
@@ -77,10 +79,12 @@ pub fn solve_d3p2() {
                     continue;
                 }
             }
+
             if free_spaces == remaining_batteries {
                 stack.extend_from_slice(&as_numbers[i..as_numbers.len()]);
                 break;
             }
+
             if free_spaces == 0 && (*num == stack[stack.len() - 1] || *num < stack[stack.len() - 1])
             {
                 remaining_batteries -= 1;
@@ -89,10 +93,13 @@ pub fn solve_d3p2() {
                 stack.push(*num);
                 free_spaces -= 1;
             }
+
             remaining_batteries -= 1;
         }
+
         let num_str = stack.iter().map(|n| n.to_string()).collect::<String>();
         total += num_str.parse::<u64>().unwrap();
     }
+
     println!("Day3 P2: {total}")
 }

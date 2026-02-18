@@ -52,3 +52,11 @@ pub fn day06_input(filename: &str) -> Vec<Vec<String>> {
         .map(|line| line.split_whitespace().map(String::from).collect())
         .collect()
 }
+
+pub fn day06_input_p2(filename: &str) -> Vec<String> {
+    read_to_string(filename)
+        .unwrap()
+        .lines()
+        .map(|line| line.split("\n").map(String::from).collect())
+        .collect()
+}
