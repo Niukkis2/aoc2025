@@ -1,4 +1,5 @@
 use aoc2025::utils::day06_input;
+use aoc2025::utils::day06_input_p2;
 
 pub fn solve_d6p1() {
     let input = day06_input("src/days/inputs/day06/day06.txt");
@@ -38,6 +39,7 @@ fn match_op(mut result: i64, op: &str, next: i64) -> i64 {
 }
 
 pub fn solve_d6p2() {
+    let input = day06_input_p2("src/days/inputs/day06/day06test.txt");
     let mut total: i64 = 0;
     println!("P2: {total}")
 }
